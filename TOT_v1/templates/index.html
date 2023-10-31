@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trick or Treater Counter</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">>
+</head>
+<body>
+    <h1>Welcome to the Trick or Treater Counter</h1>
+    <div id="counter">Number of Trick or Treaters: <span id="trick-or-treater-count">{{ trick_or_treater_count }}</span></div>
+    <form id="add-form" method="POST">
+        <button type="button" onclick="addTrickOrTreater()">Add Trick or Treater</button>
+    </form>
+    <form id="reset-form" action="/reset" method="GET" onsubmit="return confirmReset()">
+        <button type="submit">Reset Data</button>
+    </form>
+    <form action="/export" method="GET">
+        <button type="submit">Export Data to CSV</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trick_or_treater in trick_or_treaters %}
+            <tr>
+                <td>{{ trick_or_treater.name }}</td>
+                <td>{{ trick_or_treater.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function addTrickOrTreater() {
+            const form = document.getElementById('add-form');
+            const formData = new FormData(form);
+
+            fetch('/add', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the counter and table with the new data
+                const counter = document.getElementById('counter');
+                const table = document.querySelector('table tbody');
+
+                if (data.name) {
+                    // If a name was provided, update the counter and add a new row to the table
+                    counter.innerText = `Number of Trick or Treaters: ${data.count}`;
+                    const newRow = document.createElement('tr');
+                    newRow.innerHTML = `<td>${data.name}</td><td>${data.time}</td>`;
+                    table.appendChild(newRow);
+                } else {
+                    // If no name was provided, just update the counter
+                    counter.innerText = `Number of Trick or Treaters: ${data.count}`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function confirmReset() {
+            return confirm('Are you sure you want to reset the data?');
+        }
+    </script>
+    <script>
+        // Function to update the trick or treater count using AJAX
+        function updateTrickOrTreaterCount() {
+            fetch('/count')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('trick-or-treater-count').textContent = data.count;
+                });
+        }
+    
+        // Call the update function initially and set an interval to update every 5 seconds
+        updateTrickOrTreaterCount();
+        setInterval(updateTrickOrTreaterCount, 5000); // Update every 5 seconds
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin-top: 40px; /* Increase margin for better spacing */
+    font-size: 48px; /* Increase font size (4 times) */
+}
+
+#counter {
+    margin-top: 40px; /* Increase margin for better spacing */
+    font-size: 40px; /* Increase font size (4 times) */
+}
+
+button {
+    padding: 30px 20px; /* Increase button height (2 times) and maintain width */
+    font-size: 64px; /* Increase font size (4 times) */
+    margin: 60px; /* Add more spacing between buttons (2 times) */
+    width: 50%; /* Make buttons take up 50% of the row width */
+}
+
+/* Add media query for smaller screens (e.g., mobile devices) */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 36px; /* Adjust font size (3 times) for mobile */
+    }
+
+    #counter {
+        font-size: 32px; /* Adjust font size (3 times) for mobile */
+    }
+
+    button {
+        font-size: 48px; /* Adjust font size (3 times) for mobile */
+        padding: 20px 16px; /* Adjust button height (2 times) and width for mobile */
+        margin: 30px; /* Add more spacing between buttons (2 times) for mobile */
+        width: 80%; /* Make buttons take up 80% of the row width for mobile */
+    }
+}
+
+/* Add more media queries as needed for different screen sizes */
