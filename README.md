@@ -50,3 +50,13 @@ Resetting Data: Click the "Reset Data" button to reset the trick-or-treater coun
 Exporting Data to CSV: Click the "Export Data to CSV" button to export the recorded data to a CSV file named trick_or_treaters.csv.
 
 Viewing Trick-or-Treater Count: The app displays the current trick-or-treater count at the top of the page. The count is updated when you add or reset data.
+
+## Contributing
+
+Contributions are welcome! Please submit a pull request or open an issue to discuss improvements or new features.
+
+## Donations
+
+If you find this project helpful and would like to support its development, you can buy me a coffee using the link below:
+
+<a href="https://www.buymeacoffee.com/benralph" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
